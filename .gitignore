@@ -1,0 +1,8 @@
+*.swp
+*.dSYM*
+connection_bot
+client
+server
+*.o
+*.s
+core

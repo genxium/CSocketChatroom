@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ $# -ne 3 ]; then
+	echo "Usage: $0 <root dir path> <keyword to be replaced> <replacement>"
+	exit 1
+fi
+
+scriptname=$(basename $0)
+path=$1
+foo=$2
+bar=$3
+# use double quote for sed to take bash variables
+find $path -type f -not -name "$scriptname" -exec sed -i.sedbak "s/$foo/$bar/g" {} + 
+find $path -type f -name "*.sedbak" -delete
