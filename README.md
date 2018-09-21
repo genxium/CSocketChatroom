@@ -51,7 +51,7 @@ Though designed for Java language, [JSR203](https://jcp.org/en/jsr/detail?id=203
 One of the possible multi-threading improvements to make is about "receiving". 
 - Change the currently single-threaded access to `epoll_wait` in [\<proj-root\>/tcp-epoll-server.cpp](https://github.com/genxium/CSocketChatroom/blob/master/tcp-epoll-server.cpp) to multi-threaded.
 - After each `new client_fd` is accepted, create a dedicated thread for it to proceed with the `RecvPerClientFd: "RecvBytes -> ParseToApplictionLayerMessageBySpecificStateautomata"` routines.
-  - Due to the use of stateautomata, it's inappropriate or at least non-trivial make `RecvPerClientFd` multi-threaded.
+  - Due to the use of stateautomata, it's inappropriate or at least non-trivial to make `RecvPerClientFd` multi-threaded.
 - Buffer the results of each `RecvPerClientFd` into a corresponding `ApplicationLayerMessageQueuePerClientFd`, which in turn can be accessed in a multi-threaded manner.
 
 However profiling the performance difference and actually making an improvement is non-trivial. Refer to [this blog from Cloudflare](https://blog.cloudflare.com/how-to-receive-a-million-packets/) for more information.  
